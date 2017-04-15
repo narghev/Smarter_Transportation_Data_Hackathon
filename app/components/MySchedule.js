@@ -2,10 +2,11 @@ import React from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
-import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import uuid from 'uuid/v4';
-import _ from 'lodash/core';
+import { find } from 'lodash';
 import {observer} from 'mobx-react';
 
 export default
@@ -32,24 +33,55 @@ class MySchedule extends React.PureComponent {
                   primaryText={truck.name}
                   onClick={() => {this.setState({selectedTruckId: truck.id})}}
                 />
-                <Divider />
               </div>
             );
           })}
         </Menu>
       );
     };
-    const RenderSelectedTruck = () => {
+    const TruckInfo = () => {
       return(
-        <Menu style={{width: "70%", float: "right"}}>
-          <MenuItem primaryText={selectedTruck.name} />
-          <MenuItem primaryText={selectedTruck.mass} />
-          <MenuItem primaryText={selectedTruck.position} />
-        </Menu>
+        <div style={{width: "85%", border: "2px solid rgb(0, 188, 212)"}}>
+        <Table>
+          <TableHeader
+            displaySelectAll={false}
+            adjustForCheckbox={false}
+          >
+            <TableRow>
+              <TableHeaderColumn style={{fontSize: "2rem", textAlign: "center"}}>ID</TableHeaderColumn>
+              <TableHeaderColumn style={{fontSize: "2rem", textAlign: "center"}}>1234</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+            displayRowCheckbox={false}
+          >
+            <TableRow>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Name</TableRowColumn>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>First Truck</TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Mass</TableRowColumn>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>500 kg</TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Time</TableRowColumn>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>12 June 2016</TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Latitude</TableRowColumn>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>42.895401</TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Longtitude</TableRowColumn>
+              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>44.564783</TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
+        </div>
       );
     };
     return (
-      <div>
+      <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
         <RenderMyTrucks />
         <TextField
           style={{position: "fixed", bottom: "0", width: "15%"}}
@@ -73,7 +105,7 @@ class MySchedule extends React.PureComponent {
             this.setState({newTruckName: ""});
           }}
         />
-        <RenderSelectedTruck />
+        <TruckInfo />
       </div>
     );
   };

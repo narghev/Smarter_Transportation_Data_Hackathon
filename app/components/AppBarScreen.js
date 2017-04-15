@@ -47,7 +47,8 @@ class AppBarScreen extends React.PureComponent {
     };
     return (
       <div>
-        <AppBar
+        <AppBar  
+          style={{display: "flex"}}
           title={this.selected}
           iconElementLeft={<SelectorIcon />}
           onLeftIconButtonTouchTap={() => {
