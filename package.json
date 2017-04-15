@@ -1,0 +1,44 @@
+{
+  "name": "smarter_transportation_hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narghev/Smarter_Transportation_Data_Hackathon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narghev/Smarter_Transportation_Data_Hackathon/issues"
+  },
+  "homepage": "https://github.com/narghev/Smarter_Transportation_Data_Hackathon#readme",
+  "dependencies": {
+    "electron": "^1.6.2",
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-tap-event-plugin": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-2"
+    ]
+  }
+}
