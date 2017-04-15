@@ -5,6 +5,7 @@ import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import uuid from 'uuid/v4';
+import _ from 'lodash/core';
 import {observer} from 'mobx-react';
 
 export default
@@ -14,10 +15,11 @@ class MySchedule extends React.PureComponent {
     super(props);
     this.state = {
       newTruckName: "",
+      selectedTruckId: this.props.myTrucks[0].id,
     };
   };
   render() {
-    console.log(this.props.myTrucks)
+    const selectedTruck = _.find(this.props.myTrucks, {id: this.state.selectedTruckId});
     const RenderMyTrucks = () => {
       return (
         <Menu
@@ -28,6 +30,7 @@ class MySchedule extends React.PureComponent {
               <div key={truck.id}>
                 <MenuItem
                   primaryText={truck.name}
+                  onClick={() => {this.setState({selectedTruckId: truck.id})}}
                 />
                 <Divider />
               </div>
@@ -36,11 +39,20 @@ class MySchedule extends React.PureComponent {
         </Menu>
       );
     };
+    const RenderSelectedTruck = () => {
+      return(
+        <Menu style={{width: "70%", float: "right"}}>
+          <MenuItem primaryText={selectedTruck.name} />
+          <MenuItem primaryText={selectedTruck.mass} />
+          <MenuItem primaryText={selectedTruck.position} />
+        </Menu>
+      );
+    };
     return (
       <div>
         <RenderMyTrucks />
         <TextField
-          style={{postition: "fixed", bottom: "0", width: "15%"}}
+          style={{position: "fixed", bottom: "0", width: "15%"}}
           floatingLabelText="Add New Truck"
           name="New Truck"
           value={this.state.newTruckName}
@@ -48,7 +60,7 @@ class MySchedule extends React.PureComponent {
         />
         <FlatButton
           label="save"
-          style={{width: "5%"}}
+          style={{width: "5%", position: "fixed", bottom: "0", left: "15%"}}
           onTouchTap={() => {
             this.props.myTrucks.push({
               id: uuid(),
@@ -59,8 +71,9 @@ class MySchedule extends React.PureComponent {
               positionLang: 44.795402,
             });
             this.setState({newTruckName: ""});
-        }}
+          }}
         />
+        <RenderSelectedTruck />
       </div>
     );
   };
