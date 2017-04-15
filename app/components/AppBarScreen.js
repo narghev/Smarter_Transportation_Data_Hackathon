@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MySchedule from './MySchedule';
 import Calendar from './Calendar';
+import AllTrucks from './AllTrucks';
 import {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import {Trucks} from '../../data';
@@ -67,7 +68,7 @@ class AppBarScreen extends React.PureComponent {
                   />
                 );
               case "All Trucks":
-                return <AllTrucks />;
+                return <AllTrucks allTrucks={this.myTrucks}/>;
             }
           })()
         }
