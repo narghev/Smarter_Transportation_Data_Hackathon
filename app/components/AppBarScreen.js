@@ -4,14 +4,16 @@ import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MySchedule from './MySchedule';
 import {observable} from 'mobx';
 import {observer} from 'mobx-react';
+import {Trucks} from '../../data';
 
 export default
 @observer
 class AppBarScreen extends React.PureComponent {
-  @observable allTrucks = [];
-  @observable selected = "Calendar";
+  @observable myTrucks = observable(Trucks)
+  @observable selected = "My Schedule";
   constructor() {
     super();
     this.state = {
@@ -50,6 +52,24 @@ class AppBarScreen extends React.PureComponent {
             this.setState({drawerIsOpen: !this.state.drawerIsOpen})
           }}
         />
+        {
+          (() => {
+            switch(this.selected){
+              case "Calendar":
+                return (
+                  <Calendar />
+                );
+              case "My Schedule":
+                return (
+                  <MySchedule
+                    myTrucks={this.myTrucks}
+                  />
+                );
+              case "All Trucks":
+                return <AllTrucks />;
+            }
+          })()
+        }
       </div>
     );
   };
