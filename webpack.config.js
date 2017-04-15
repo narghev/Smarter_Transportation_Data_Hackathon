@@ -22,6 +22,7 @@ var config = {
             exclude: /node_modules/,
             loader: 'babel-loader',
             query: {
+               plugins: ['transform-decorators-legacy'],
                presets: ['es2015', 'react', 'stage-2']
             }
          },
