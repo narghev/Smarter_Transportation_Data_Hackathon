@@ -27,6 +27,7 @@
     "react": "^15.5.4",
     "react-big-calendar": "^0.13.0",
     "react-dom": "^15.5.4",
+    "react-google-maps": "^4.11.0",
     "react-tap-event-plugin": "^2.0.1",
     "uuid": "^3.0.1"
   },
