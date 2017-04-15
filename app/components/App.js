@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginScreen from './loginScreen.jsx';
+import LoginScreen from './loginScreen';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
