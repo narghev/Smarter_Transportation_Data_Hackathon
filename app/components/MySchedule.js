@@ -4,9 +4,11 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
+import TimePicker from 'material-ui/TimePicker';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import uuid from 'uuid/v4';
-import { find } from 'lodash';
+import {find} from 'lodash';
 import {observer} from 'mobx-react';
 
 export default
@@ -16,7 +18,12 @@ class MySchedule extends React.PureComponent {
     super(props);
     this.state = {
       newTruckName: "",
+      dialogOpen: false,
       selectedTruckId: this.props.myTrucks[0].id,
+      newTruckMass: "",
+      newTruckLat: 40.19685104370117,
+      newTruckLng: 44.43186019897461,
+      time: null
     };
   };
   render() {
@@ -39,41 +46,86 @@ class MySchedule extends React.PureComponent {
         </Menu>
       );
     };
+    const Actions = [
+      <FlatButton
+        label="cancel"
+        primary={true}
+        onTouchTap={() => this.setState({dialogOpen: false})}
+      />,
+      <FlatButton
+        label="save"
+        primary={true}
+        onTouchTap={() => {this.props.myTrucks.push({
+          id: uuid(),
+          name: this.state.newTruckName,
+          mass: this.state.newTruckMass,
+          positionLat: this.state.newTruckLat,
+          positionLang: this.state.newTruckLng,
+          time: this.state.time
+          });
+          this.setState({dialogOpen: false, newTruckName: ""});
+        }}
+      />
+    ];
     const TruckInfo = () => {
       return(
-        <div style={{width: "85%", border: "2px solid rgb(0, 188, 212)"}}>
+        <div style={{width: "85%"}}>
         <Table>
           <TableHeader
             displaySelectAll={false}
             adjustForCheckbox={false}
           >
             <TableRow>
-              <TableHeaderColumn style={{fontSize: "2rem", textAlign: "center"}}>ID</TableHeaderColumn>
-              <TableHeaderColumn style={{fontSize: "2rem", textAlign: "center"}}>1234</TableHeaderColumn>
+              <TableHeaderColumn style={{textAlign: "center"}}>
+                ID
+              </TableHeaderColumn>
+              <TableHeaderColumn style={{textAlign: "center"}}>
+                {selectedTruck.id}
+              </TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
             displayRowCheckbox={false}
           >
             <TableRow>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Name</TableRowColumn>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>First Truck</TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                Name
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                {selectedTruck.name}
+              </TableRowColumn>
             </TableRow>
             <TableRow>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Mass</TableRowColumn>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>500 kg</TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                Mass
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                {selectedTruck.mass}
+              </TableRowColumn>
             </TableRow>
             <TableRow>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Time</TableRowColumn>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>12 June 2016</TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                Time
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                {selectedTruck.time.toString()}
+              </TableRowColumn>
             </TableRow>
             <TableRow>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Latitude</TableRowColumn>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>42.895401</TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                Latitude
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                {selectedTruck.positionLat}
+              </TableRowColumn>
             </TableRow>
             <TableRow>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>Longtitude</TableRowColumn>
-              <TableRowColumn style={{fontSize: "1.5rem", textAlign: "center"}}>44.564783</TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                Longtitude
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: "center"}}>
+                {selectedTruck.positionLang}
+              </TableRowColumn>
             </TableRow>
           </TableBody>
         </Table>
@@ -88,24 +140,39 @@ class MySchedule extends React.PureComponent {
           floatingLabelText="Add New Truck"
           name="New Truck"
           value={this.state.newTruckName}
-          onChange={(e) => this.setState({newTruckName: e.target.value})}
+          onChange={e => this.setState({newTruckName: e.target.value})}
         />
         <FlatButton
-          label="save"
+          label="add"
           style={{width: "5%", position: "fixed", bottom: "0", left: "15%"}}
-          onTouchTap={() => {
-            this.props.myTrucks.push({
-              id: uuid(),
-              name: this.state.newTruckName,
-              mass: '100 kg',
-              time: new Date(),
-              positionLat: 43.6327519,
-              positionLang: 44.795402,
-            });
-            this.setState({newTruckName: ""});
-          }}
+          onTouchTap={() => {this.setState({dialogOpen: true});}}
         />
         <TruckInfo />
+        <Dialog
+          open={this.state.dialogOpen}
+          actions={Actions}
+        >
+          <TextField
+            name="New Dialog Truck"
+            floatingLabelText="Name"
+            fullWidth={true}
+            value={this.state.newTruckName}
+            onChange={e => this.setState({newTruckName: e.target.value})}
+          />
+          <TextField
+            name="New Truck Mass"
+            floatingLabelText="Mass"
+            fullWidth={true}
+            value={this.state.newTruckMass}
+            onChange={e => this.setState({newTruckMass: e.target.value})}
+          />
+          <TimePicker
+            name="Pick Time"
+            hintText="Pick Comfortable Time"
+            value={this.state.time}
+            onChange={(e, time) => this.setState({time})}
+          />
+        </Dialog>
       </div>
     );
   };
