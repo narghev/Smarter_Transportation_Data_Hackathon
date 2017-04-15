@@ -1,7 +1,9 @@
 import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-// import events from '../backend/events.js';
+import { events } from '../../events';
+
+console.log(events)
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
@@ -14,8 +16,8 @@ class Calendar extends React.Component{
     return(
       <div style={{height: '93vh'}}>
         <BigCalendar
-          events = { [] }
-          defaultView='month'
+          events = { events }
+          defaultView='day'
           onSelectEvent={event => alert(event.title)}
           toolbar={true}
         />

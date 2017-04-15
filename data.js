@@ -5,7 +5,7 @@ const Trucks = [
     id: uuid(),
     name: 'First Truck',
     mass: '100 kg',
-    time: new Date(),
+    time: new Date(2017, 3, 16, 17, 30),
     positionLat: 44.6327519,
     positionLang: 42.795402,
   },
@@ -13,7 +13,7 @@ const Trucks = [
     id: uuid(),
     name: "Second Truck",
     mass: '200 kg',
-    time: new Date(),
+    time: new Date(2017, 3, 16, 8, 30),
     positionLat: 42.895401,
     positionLang: 44.564783
   },
@@ -21,7 +21,7 @@ const Trucks = [
     id: uuid(),
     name: "Third Truck",
     mass: '250 kg',
-    time: new Date(),
+    time: new Date(2017, 3, 19, 16, 30),
     positionLat: 43.111112,
     positionLang: 42.999292
   },
@@ -29,7 +29,7 @@ const Trucks = [
     id: uuid(),
     name: "Forth Truck",
     mass: '300 kg',
-    time: new Date(),
+    time: new Date(2017, 3, 15, 10, 30),
     positionLat: 44.123456,
     positionLang: 42.77777
   },
@@ -37,7 +37,7 @@ const Trucks = [
     id: uuid(),
     name: "Fivth Truck",
     mass: '200 kg',
-    time: new Date(),
+    time: new Date(2017, 3, 16, 17, 30),
     positionLat: 43.963201,
     positionLang: 44.100001
   }
