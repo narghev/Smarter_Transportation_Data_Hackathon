@@ -2,3 +2,16 @@
   margin: 0;
   padding: 0;
 }
+
+.rbc-header-gutter, .rbc-time-gutter {
+  width: 100px !important;
+  font-size: 20px !important;
+}
+
+.rbc-toolbar-label {
+  font-size: 20px;
+}
+
+.rbc-header {
+  font-size: 18px;
+}
