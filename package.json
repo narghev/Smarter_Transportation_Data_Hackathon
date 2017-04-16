@@ -11,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/narghev/Smarter_Transportation_Data_Hackathon.git"
   },
-  "author": "",
+  "author": {
+    "narghev": "<n.ghevandiani@gmail.com>",
+    "DavtyanErik": "<erikdavtyan@gmail.com>",
+    "paerallax": "<Robert Adamyan>",
+    "adsellor": "<Zaven>"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/narghev/Smarter_Transportation_Data_Hackathon/issues"
