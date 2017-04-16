@@ -13,17 +13,17 @@ class App extends React.PureComponent{
     }
   }
   render(){
-    // if (!this.state.loggedIn){
-    //   return(
-    //     <LoginScreen
-    //       login = {()=>{
-    //         this.setState({ loggedIn: true });
-    //       }}
-    //     />
-    //   );
-    // }
+    if (!this.state.loggedIn){
+      return(
+        <LoginScreen
+          login = {()=>{
+            this.setState({ loggedIn: true });
+          }}
+        />
+      );
+    }
     return(
-      <div style={{background: "linear-gradient(135deg, white, rgb(216, 216, 216))"}}>
+      <div>
         <AppBarScreen />
       </div>
     );

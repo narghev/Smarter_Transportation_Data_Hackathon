@@ -40,7 +40,7 @@ class MySchedule extends React.PureComponent {
     const RenderMyTrucks = () => {
       return (
         <Menu
-          style={{width: "20%", borderRight: '1px solid rgb(0, 188, 212)'}}
+          style={{width: "20%", borderRight: '1px solid rgb(0, 188, 212)', backgroundColor: "#f3feff"}}
         >
           {this.props.myTrucks.map(truck => {
             return (
@@ -149,7 +149,7 @@ class MySchedule extends React.PureComponent {
       <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
         <RenderMyTrucks />
         <TextField
-          style={{position: "fixed", bottom: "8%", width: "15%"}}
+          style={{position: "fixed", bottom: "0", width: "15%"}}
           floatingLabelText="Add New Truck"
           name="New Truck"
           value={this.state.newTruckName}
@@ -157,7 +157,7 @@ class MySchedule extends React.PureComponent {
         />
         <FlatButton
           label="add"
-          style={{width: "5%", position: "fixed", bottom: "8%", left: "15%"}}
+          style={{width: "5%", position: "fixed", bottom: "0", left: "15%"}}
           onTouchTap={() => {this.setState({dialogOpen: true});}}
         />
         <TruckInfo />

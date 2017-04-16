@@ -65,20 +65,9 @@ class AppBarScreen extends React.PureComponent {
                 );
               case "My Schedule":
                 return (
-                  <div>
                     <MySchedule
                       myTrucks={this.myTrucks}
                     />
-                    <AppBar
-                    title="Random Footer" 
-                    showMenuIconButton={false}
-                    style={{transition: 'backgroundColor 0.5s ease',
-                            position: 'absolute', bottom: '0', width: '100%', 
-                            height: '8%', backgroundColor: 'rgb(0, 188, 212)', opacity: '1.2',
-                            textAlign: 'center', fontSize: '4px !important', borderTop: '2px solid rgb(0, 188, 212)'
-                          }}
-                    />
-                  </div>
                 );
               case "All Trucks":
                 return <AllTrucks allTrucks={this.myTrucks}/>;
