@@ -3,7 +3,6 @@ import {default as React, Component} from 'react';
 import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 
 const Map = withGoogleMap(props => {
-  console.log(props.marker)
   return (
   <GoogleMap
     ref={props.onMapLoad}
@@ -11,11 +10,19 @@ const Map = withGoogleMap(props => {
     defaultCenter={{ lat: 40.184501, lng: 44.514995 }}
     onClick={props.onMapClick}
   >
-    <Marker
-      position={props.marker}
-      defaultAnimation={1}
-      key={props.marker}
-    />
+		{
+			(() => {
+				if(props.marker.lat){
+					return (
+						<Marker
+				      position={props.marker}
+				      defaultAnimation={1}
+				      key={props.marker}
+				    />
+					)
+				}
+			})()
+		}
   </GoogleMap>
   )
 });
