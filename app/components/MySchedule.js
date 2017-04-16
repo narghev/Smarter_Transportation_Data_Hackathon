@@ -31,7 +31,7 @@ class MySchedule extends React.PureComponent {
     const RenderMyTrucks = () => {
       return (
         <Menu
-          style={{width: "20%"}}
+          style={{width: "20%", borderRight: '1px solid #DEDEDE'}}
         >
           {this.props.myTrucks.map(truck => {
             return (
@@ -39,6 +39,7 @@ class MySchedule extends React.PureComponent {
                 <MenuItem
                   primaryText={truck.name}
                   onClick={() => {this.setState({selectedTruckId: truck.id})}}
+                  style={{ borderBottom: '1px solid #DEDEDE'}}
                 />
               </div>
             );
