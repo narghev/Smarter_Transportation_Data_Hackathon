@@ -7,6 +7,7 @@ import Dialog from 'material-ui/Dialog';
 import TimePicker from 'material-ui/TimePicker';
 import DatePicker from 'material-ui/DatePicker';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import MapPicker from './MapPicker';
 import uuid from 'uuid/v4';
 import moment from 'moment';
 import {find} from 'lodash';
@@ -23,10 +24,16 @@ class MySchedule extends React.PureComponent {
       dialogOpen: false,
       selectedTruckId: this.props.myTrucks[0].id,
       newTruckMass: "",
-      newTruckLat: 40.19685104370117,
-      newTruckLng: 44.43186019897461,
+      newTruckLat: null,
+      newTruckLng: null,
       time: new Date()
     };
+  };
+  handleLatLng = (marker) => {
+    this.setState({
+      newTruckLat: marker.lat(),
+      newTruckLng: marker.lng()
+    });
   };
   render() {
     const selectedTruck = _.find(this.props.myTrucks, {id: this.state.selectedTruckId});
@@ -68,7 +75,7 @@ class MySchedule extends React.PureComponent {
             time: this.state.time
           };
           newTruck.time = timeAllocation(this.props.myTrucks, newTruck);
-          this.props.myTrucks.push({newTruck});
+          this.props.myTrucks.push(newTruck);
           this.setState({dialogOpen: false, newTruckName: ""});
         }}
       />
@@ -193,6 +200,13 @@ class MySchedule extends React.PureComponent {
               const time = new Date(o.getFullYear(), o.getMonth(), o.getDate(), n.getHours(), n.getMinutes());
               this.setState({time});
             }}
+          />
+          <MapPicker
+            marker={{
+              lat: this.state.newTruckLat,
+              lng: this.state.newTruckLng
+            }}
+            handleLatLng={this.handleLatLng}
           />
         </Dialog>
       </div>
