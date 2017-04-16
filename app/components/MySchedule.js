@@ -74,7 +74,7 @@ class MySchedule extends React.PureComponent {
             positionLang: this.state.newTruckLng,
             time: this.state.time
           };
-          timeAllocation(this.props.myTrucks, newTruck, this);
+          timeAllocation(this.props.myTrucks, newTruck, this, this.state.time);
         }}
       />
     ];
@@ -119,8 +119,8 @@ class MySchedule extends React.PureComponent {
                 Time
               </TableRowColumn>
               <TableRowColumn style={{textAlign: "center"}}>
-                {//moment(selectedTruck.time).format("h:mm a, Do MMMM")
-                  selectedTruck.time.toString()
+                {
+                  moment(selectedTruck.time).format("h:mm a, Do MMMM")
                 }
               </TableRowColumn>
             </TableRow>

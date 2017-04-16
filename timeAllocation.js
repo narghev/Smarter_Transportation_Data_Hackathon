@@ -1,4 +1,4 @@
-const timeAllocation = (fullSchedule, newTruck, ref) => {
+const timeAllocation = (fullSchedule, newTruck, ref, chosenTime) => {
   const {id, name, mass, positionLat, positionLang, time} = newTruck;
   const origin = new google.maps.LatLng(positionLat, positionLang);
   const destination = new google.maps.LatLng(41.200516, 44.2210435);
@@ -8,7 +8,7 @@ const timeAllocation = (fullSchedule, newTruck, ref) => {
     if (status !== google.maps.DistanceMatrixStatus.OK || status != "OK"){
       console.log('Error:', status);
     } else {
-      newTruck.time = new Date(new Date().getTime() + responseDis.rows[0].elements[0].duration.value*1000);
+      newTruck.time = new Date(chosenTime.getTime() + responseDis.rows[0].elements[0].duration.value*1000);
       ref.props.myTrucks.push(newTruck);
       ref.setState({
         dialogOpen: false,
