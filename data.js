@@ -35,12 +35,13 @@ const Trucks = [
   },
   {
     id: uuid(),
-    name: "Fivth Truck",
+    name: "Fifth Truck",
     mass: '200 kg',
     time: new Date(2017, 3, 16, 17, 30),
     positionLat: 40.14704895019531,
     positionLang: 44.48865509033203
-  }
+  },
+  
 ];
 
 export {Trucks};

@@ -23,7 +23,7 @@ class App extends React.PureComponent{
     //   );
     // }
     return(
-      <div>
+      <div style={{background: "linear-gradient(135deg, white, rgb(216, 216, 216))"}}>
         <AppBarScreen />
       </div>
     );

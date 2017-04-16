@@ -42,7 +42,7 @@ class MapContainer extends Component {
 
   render() {
     return (
-      <div style={{height: `100vh`}}>
+      <div style={{height: `100vh`, borderRight: "5px solid rgb(0, 188, 212)"}}>
         <Map
           containerElement={
             <div style={{ height: `100vh` }} />

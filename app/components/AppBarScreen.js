@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
+import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MySchedule from './MySchedule';
@@ -64,9 +65,20 @@ class AppBarScreen extends React.PureComponent {
                 );
               case "My Schedule":
                 return (
-                  <MySchedule
-                    myTrucks={this.myTrucks}
-                  />
+                  <div>
+                    <MySchedule
+                      myTrucks={this.myTrucks}
+                    />
+                    <AppBar
+                    title="Random Footer" 
+                    showMenuIconButton={false}
+                    style={{transition: 'backgroundColor 0.5s ease',
+                            position: 'absolute', bottom: '0', width: '100%', 
+                            height: '8%', backgroundColor: 'rgb(0, 188, 212)', opacity: '1.2',
+                            textAlign: 'center', fontSize: '4px !important', borderTop: '2px solid rgb(0, 188, 212)'
+                          }}
+                    />
+                  </div>
                 );
               case "All Trucks":
                 return <AllTrucks allTrucks={this.myTrucks}/>;
