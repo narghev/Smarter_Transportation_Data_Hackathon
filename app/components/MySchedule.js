@@ -1,7 +1,6 @@
 import React from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
@@ -12,6 +11,7 @@ import uuid from 'uuid/v4';
 import moment from 'moment';
 import {find} from 'lodash';
 import {observer} from 'mobx-react';
+import timeAllocation from '../../timeAllocation';
 
 export default
 @observer
@@ -58,14 +58,17 @@ class MySchedule extends React.PureComponent {
       <FlatButton
         label="save"
         primary={true}
-        onTouchTap={() => {this.props.myTrucks.push({
-          id: uuid(),
-          name: this.state.newTruckName,
-          mass: this.state.newTruckMass,
-          positionLat: this.state.newTruckLat,
-          positionLang: this.state.newTruckLng,
-          time: this.state.time
-          });
+        onTouchTap={() => {
+          const newTruck = {
+            id: uuid(),
+            name: this.state.newTruckName,
+            mass: this.state.newTruckMass,
+            positionLat: this.state.newTruckLat,
+            positionLang: this.state.newTruckLng,
+            time: this.state.time
+          };
+          newTruck(time) = timeAllocation(this.props.myTrucks, newTruck);
+          this.props.myTrucks.push({newTruck});
           this.setState({dialogOpen: false, newTruckName: ""});
         }}
       />
