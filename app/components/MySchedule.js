@@ -8,6 +8,7 @@ import Dialog from 'material-ui/Dialog';
 import TimePicker from 'material-ui/TimePicker';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import uuid from 'uuid/v4';
+import moment from 'moment';
 import {find} from 'lodash';
 import {observer} from 'mobx-react';
 
@@ -109,7 +110,7 @@ class MySchedule extends React.PureComponent {
                 Time
               </TableRowColumn>
               <TableRowColumn style={{textAlign: "center"}}>
-                {selectedTruck.time.toString()}
+                {moment(selectedTruck.time).format("h:mm a, Do MMMM")}
               </TableRowColumn>
             </TableRow>
             <TableRow>
