@@ -67,7 +67,7 @@ class MySchedule extends React.PureComponent {
             positionLang: this.state.newTruckLng,
             time: this.state.time
           };
-          newTruck(time) = timeAllocation(this.props.myTrucks, newTruck);
+          newTruck.time = timeAllocation(this.props.myTrucks, newTruck);
           this.props.myTrucks.push({newTruck});
           this.setState({dialogOpen: false, newTruckName: ""});
         }}
