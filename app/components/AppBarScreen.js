@@ -47,7 +47,7 @@ class AppBarScreen extends React.PureComponent {
     };
     return (
       <div>
-        <AppBar  
+        <AppBar
           style={{display: "flex"}}
           title={this.selected}
           iconElementLeft={<SelectorIcon />}
@@ -60,7 +60,7 @@ class AppBarScreen extends React.PureComponent {
             switch(this.selected){
               case "Calendar":
                 return (
-                  <Calendar />
+                  <Calendar events={this.myTrucks} />
                 );
               case "My Schedule":
                 return (

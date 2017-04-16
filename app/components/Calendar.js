@@ -1,7 +1,6 @@
 import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import { events } from '../../events';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
@@ -25,6 +24,15 @@ class Calendar extends React.Component{
   }
 
   render(){
+    const events = this.props.events.map((data, id)=>{
+      if (data != undefined){
+        return {
+          title: data.name,
+          start: data.time,
+          end: data.time
+        }
+      }
+    });
     return(
       <div style={{height: '93vh'}}>
         <BigCalendar
