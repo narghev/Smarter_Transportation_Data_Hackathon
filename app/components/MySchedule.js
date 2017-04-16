@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import TimePicker from 'material-ui/TimePicker';
+import DatePicker from 'material-ui/DatePicker';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import uuid from 'uuid/v4';
 import moment from 'moment';
@@ -24,7 +25,7 @@ class MySchedule extends React.PureComponent {
       newTruckMass: "",
       newTruckLat: 40.19685104370117,
       newTruckLng: 44.43186019897461,
-      time: null
+      time: new Date()
     };
   };
   render() {
@@ -168,11 +169,27 @@ class MySchedule extends React.PureComponent {
             value={this.state.newTruckMass}
             onChange={e => this.setState({newTruckMass: e.target.value})}
           />
+          <DatePicker
+            name="Pick Date"
+            hintText="Pick Comfortable Date"
+            value={this.state.time}
+            onChange={(e, newDate) => {
+              const o = this.state.time;
+              const n = newDate;
+              const time = new Date(n.getFullYear(), n.getMonth(), n.getDate(), o.getHours(), o.getMinutes());
+              this.setState({time});
+            }}
+          />
           <TimePicker
             name="Pick Time"
             hintText="Pick Comfortable Time"
             value={this.state.time}
-            onChange={(e, time) => this.setState({time})}
+            onChange={(e, newTime) => {
+              const o = this.state.time;
+              const n = newTime;
+              const time = new Date(o.getFullYear(), o.getMonth(), o.getDate(), n.getHours(), n.getMinutes());
+              this.setState({time});
+            }}
           />
         </Dialog>
       </div>
